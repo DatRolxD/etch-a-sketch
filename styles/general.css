@@ -1,3 +1,4 @@
+/* CSS RESET */
 /* Box sizing rules */
 *,
 *::before,
@@ -71,4 +72,39 @@ select {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+/* END OF CSS RESET */
+header {
+  padding: 1rem;
+  text-align: center;
+  border: 1px solid black;
+}
+
+main {
+  width: 85%; 
+  min-height: 50vh;
+  margin: 2rem auto;
+}
+
+#container {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+}
+
+.square {
+  text-align: center;
+  border: 1px solid black;
+  height: 2rem;
+}
+
+.black {
+  background-color: black;
+}
+
+button {
+  display: block;
+  margin: 1.5rem auto;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 1rem 2rem;
 }
