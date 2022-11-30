@@ -1,61 +1,72 @@
-// create general consts
+//initialize variables
+const main = document.querySelector('main');
 const container = document.querySelector('#container');
+const four = document.querySelector('#four');
+const eight = document.querySelector('#eight');
+const sixteen = document.querySelector('#sixteen');
 const clearBtn = document.querySelector('#clear');
-const makeNewGrid = document.querySelector('#grid-maker');
 clearBtn.addEventListener('click', clear);
-makeNewGrid.addEventListener('click', createGrid)
+let number = 1; 
 
-for (let i = 1; i <= 256; i++){
-  const square = document.createElement('div');
-  square.classList.add('square');
-  square.textContent = i;
-  container.appendChild(square);
+function createGrid(){
+  const gridSize = number * number;
+  for (let i = 1; i <= gridSize; i++){
+    const square = document.createElement('div');
+    square.classList.add('square');
+    container.appendChild(square);
+  }
 }
 
 function removeGrid(){
-  const squares = document.querySelectorAll('#container>div');
-  for (const square of squares){
+  for (const square of getSquares()){
     container.removeChild(square);
   }
 }
 
-function createGrid(){
+four.addEventListener('click', ()=>{
+  number = 4;
+  container.classList.remove(...container.classList);
+  container.classList.add('four');
   removeGrid();
-  let userNumber = prompt();
-  for (let i = 1; i <= userNumber * userNumber; i++){
-    const square = document.createElement('div');
-    square.classList.add('square');
-    square.textContent = i;
-    container.appendChild(square);
-  }
-  squaresChangeColor();
-  
-};
+  createGrid();
+  squaresEvent();
+});
 
+eight.addEventListener('click', ()=>{
+  number = 8;
+  container.classList.remove(...container.classList);
+  container.classList.add('eight');
+  removeGrid();
+  createGrid();
+  squaresEvent();
+});
 
-function squaresChangeColor(){
-  const squares = document.querySelectorAll('.square');
-  for (const square of squares){
-    square.addEventListener('mouseover', changeColor);
-    function changeColor(){
+sixteen.addEventListener('click', ()=>{
+  number = 16;
+  container.classList.remove(...container.classList);
+  container.classList.add('sixteen');
+  removeGrid(); 
+  createGrid();
+  squaresEvent();
+});
+
+function squaresEvent(){
+  for(const square of getSquares()){
+    square.addEventListener('mouseover', ()=>{
       square.classList.add('black');
-    }
+    });
   }
+}
+
+function getSquares(){
+  const squares = document.querySelectorAll('.square');
+  return squares;
 }
 
 function clear(){
-  const squares = document.querySelectorAll('.square');
-  for (const square of squares){
+  for (const square of getSquares()){
     square.classList.remove('black');
   }
 }
-
-squaresChangeColor();
-
-
-
-
-
-
 
 

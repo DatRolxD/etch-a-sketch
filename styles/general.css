@@ -77,35 +77,49 @@ select {
 header {
   padding: 1rem;
   text-align: center;
-  border: 1px solid black;
 }
 
-main {
-  width: 85%; 
-  min-height: 50vh;
+#choose-grid{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#container{
   margin: 2rem auto;
+  display: grid;
+  gap: 0;
 }
 
-#container {
-  display: grid;
+.four {
+  width: 128px;
+  height: 128px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.eight {
+  width: 256px;
+  height: 256px;
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.sixteen {
+  width: 512px;
+  height: 512px;
   grid-template-columns: repeat(16, 1fr);
 }
 
 .square {
-  height: 2rem;
-  text-align: center;
   border: 1px solid black;
+  text-align: center;
 }
-
 
 .black {
   background-color: black;
 }
 
-button {
+#clear {
   display: block;
-  margin: 1.5rem auto;
-  font-size: 1.5rem;
-  font-weight: bold;
+  margin: 0 auto;
   padding: 1rem 2rem;
 }
