@@ -92,10 +92,11 @@ main {
 }
 
 .square {
+  height: 2rem;
   text-align: center;
   border: 1px solid black;
-  height: 2rem;
 }
+
 
 .black {
   background-color: black;
