@@ -73,6 +73,10 @@ function randomColor(){
   randomRgb[2] = Math.floor(Math.random() * 255);
   return randomRgb;
 }
+const pickerColor = document.querySelector('#color-picker');
+pickerColor.addEventListener('input', ()=>{
+  
+});
 
 let inColor = false;
 const coloursBtn = document.querySelector('#colours');

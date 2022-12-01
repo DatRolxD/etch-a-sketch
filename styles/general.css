@@ -214,6 +214,14 @@ footer>address{
   color: white;
 }
 
+#color-picker{
+  border: none;
+  background-color: white;
+  width: 5rem;
+  height: 5rem;
+  cursor: pointer;
+}
+
 /* Small devices (landscape phones, 576px and up) */
 @media (max-width: 767.98px) {
   html{
