@@ -24,6 +24,12 @@ function removeGrid(){
 }
 
 four.addEventListener('click', ()=>{
+  four.style.color = 'white';
+  four.style.backgroundColor = 'black';
+  eight.style.color = '';
+  eight.style.backgroundColor = '';
+  sixteen.style.color = '';
+  sixteen.style.backgroundColor = '';
   number = 4;
   container.classList.remove(...container.classList);
   container.classList.add('four');
@@ -33,6 +39,12 @@ four.addEventListener('click', ()=>{
 });
 
 eight.addEventListener('click', ()=>{
+  eight.style.color = 'white';
+  eight.style.backgroundColor = 'black';
+  four.style.color = '';
+  four.style.backgroundColor = '';
+  sixteen.style.color = '';
+  sixteen.style.backgroundColor = '';
   number = 8;
   container.classList.remove(...container.classList);
   container.classList.add('eight');
@@ -42,6 +54,12 @@ eight.addEventListener('click', ()=>{
 });
 
 sixteen.addEventListener('click', ()=>{
+  sixteen.style.color = 'white';
+  sixteen.style.backgroundColor = 'black';
+  eight.style.color = '';
+  eight.style.backgroundColor = '';
+  four.style.color = '';
+  four.style.backgroundColor = '';
   number = 16;
   container.classList.remove(...container.classList);
   container.classList.add('sixteen');
@@ -49,6 +67,8 @@ sixteen.addEventListener('click', ()=>{
   createGrid();
   squaresEvent();
 });
+
+
 
 function getSquares(){
   const squares = document.querySelectorAll('.square');
@@ -73,23 +93,38 @@ function randomColor(){
   randomRgb[2] = Math.floor(Math.random() * 255);
   return randomRgb;
 }
+const pickerColorContainer = document.querySelector('#color-picker-container');
 const pickerColor = document.querySelector('#color-picker');
 pickerColor.addEventListener('input', ()=>{
   
 });
 
+let colorPicked = false;
 let inColor = false;
 const coloursBtn = document.querySelector('#colours');
 const blackBtn = document.querySelector('#black');
+blackBtn.classList.add('selected-black');
+pickerColor.addEventListener('click', ()=>{
+  colorPicked = true;
+  inColor = false;
+  squaresEvent();
+  pickerColorContainer.classList.add('selected-color-picker');
+  blackBtn.classList.remove('selected-black');
+  coloursBtn.classList.remove('selected-color');
+})
 coloursBtn.addEventListener('click', ()=>{
   inColor = true;
+  colorPicked = false;
   squaresEvent();
   blackBtn.classList.remove('selected-black');
+  pickerColorContainer.classList.remove('selected-color-picker');
   coloursBtn.classList.add('selected-color');
 });
 blackBtn.addEventListener('click', ()=>{
   inColor = false;
+  colorPicked = false;
   squaresEvent();
+  pickerColorContainer.classList.remove('selected-color-picker');
   coloursBtn.classList.remove('selected-color');
   blackBtn.classList.add('selected-black');
 });
@@ -97,7 +132,20 @@ blackBtn.addEventListener('click', ()=>{
 console.log(`rgb(${randomColor()[0]}, ${randomColor()[1]}, ${randomColor()[2]})`);
 
 function squaresEvent(){
-  if (inColor === true){
+  if (colorPicked === true){
+    for(const square of getSquares()){
+      square.addEventListener('mouseover', ()=>{
+        square.style.backgroundColor = '';
+        square.classList.remove(...square.classList);
+        square.classList.add('square');
+        square.style.backgroundColor = pickerColor.value;
+        console.log(pickerColor.value);
+        console.log(square.style.backgroundColor);
+        //square.classList.add(colours[Math.floor(Math.random() * colours.length)]);
+      });
+    }
+  }
+  else if (inColor === true){
     for(const square of getSquares()){
       square.addEventListener('mouseover', ()=>{
         square.classList.remove(...square.classList);
