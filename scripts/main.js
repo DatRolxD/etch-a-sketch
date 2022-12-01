@@ -58,12 +58,22 @@ function getSquares(){
 function clear(){
   for (const square of getSquares()){
     square.classList.remove(...square.classList);
+    square.style.backgroundColor = '';
     square.classList.add('square');
   }
 }
 
 const colours = ['red', 'green', 'blue'];
 console.log(colours[Math.floor(Math.random() * colours.length)]);
+
+let randomRgb = [255, 255, 255];
+function randomColor(){
+  randomRgb[0] = Math.floor(Math.random() * 255);
+  randomRgb[1] = Math.floor(Math.random() * 255);
+  randomRgb[2] = Math.floor(Math.random() * 255);
+  return randomRgb;
+}
+
 let inColor = false;
 const coloursBtn = document.querySelector('#colours');
 const blackBtn = document.querySelector('#black');
@@ -80,20 +90,23 @@ blackBtn.addEventListener('click', ()=>{
   blackBtn.classList.add('selected-black');
 });
 
+console.log(`rgb(${randomColor()[0]}, ${randomColor()[1]}, ${randomColor()[2]})`);
+
 function squaresEvent(){
   if (inColor === true){
     for(const square of getSquares()){
       square.addEventListener('mouseover', ()=>{
         square.classList.remove(...square.classList);
         square.classList.add('square');
-        square.classList.add(colours[Math.floor(Math.random() * colours.length)]);
+        square.style.backgroundColor = `rgb(${randomColor()[0]}, ${randomColor()[1]}, ${randomColor()[2]})`;
+        //square.classList.add(colours[Math.floor(Math.random() * colours.length)]);
       });
     }
   }
   else {
     for(const square of getSquares()){
       square.addEventListener('mouseover', ()=>{
-        square.classList.remove(...square.classList);
+        square.style.backgroundColor = '';
         square.classList.add('square');
         square.classList.add('black');
       });
