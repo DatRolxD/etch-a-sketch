@@ -50,14 +50,6 @@ sixteen.addEventListener('click', ()=>{
   squaresEvent();
 });
 
-function squaresEvent(){
-  for(const square of getSquares()){
-    square.addEventListener('mouseover', ()=>{
-      square.classList.add('black');
-    });
-  }
-}
-
 function getSquares(){
   const squares = document.querySelectorAll('.square');
   return squares;
@@ -65,8 +57,47 @@ function getSquares(){
 
 function clear(){
   for (const square of getSquares()){
-    square.classList.remove('black');
+    square.classList.remove(...square.classList);
+    square.classList.add('square');
   }
 }
 
+const colours = ['red', 'green', 'blue'];
+console.log(colours[Math.floor(Math.random() * colours.length)]);
+let inColor = false;
+const coloursBtn = document.querySelector('#colours');
+const blackBtn = document.querySelector('#black');
+coloursBtn.addEventListener('click', ()=>{
+  inColor = true;
+  squaresEvent();
+  blackBtn.classList.remove('selected-black');
+  coloursBtn.classList.add('selected-color');
+});
+blackBtn.addEventListener('click', ()=>{
+  inColor = false;
+  squaresEvent();
+  coloursBtn.classList.remove('selected-color');
+  blackBtn.classList.add('selected-black');
+});
+
+function squaresEvent(){
+  if (inColor === true){
+    for(const square of getSquares()){
+      square.addEventListener('mouseover', ()=>{
+        square.classList.remove(...square.classList);
+        square.classList.add('square');
+        square.classList.add(colours[Math.floor(Math.random() * colours.length)]);
+      });
+    }
+  }
+  else {
+    for(const square of getSquares()){
+      square.addEventListener('mouseover', ()=>{
+        square.classList.remove(...square.classList);
+        square.classList.add('square');
+        square.classList.add('black');
+      });
+  }
+}
+};
 
