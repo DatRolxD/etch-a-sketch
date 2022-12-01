@@ -95,21 +95,20 @@ header {
 }
 
 .four {
-  width: 10rem;
-  height: 10rem;
   grid-template-columns: repeat(4, 1fr);
 }
 
 .eight {
-  width: 15rem;
-  height: 15rem;
   grid-template-columns: repeat(8, 1fr);
 }
 
 .sixteen {
+  grid-template-columns: repeat(16, 1fr);
+}
+
+.four, .eight, .sixteen {
   width: 20rem;
   height: 20rem;
-  grid-template-columns: repeat(16, 1fr);
 }
 
 .square {
@@ -223,7 +222,12 @@ footer>address{
 
   #ui{
     width: 100%;
-    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .four, .eight, .sixteen {
+    width: 10rem;
+    height: 10rem;
   }
 
  }
@@ -238,4 +242,10 @@ footer>address{
     width: 75%;
     justify-content: space-between;
   }
+
+  .four, .eight, .sixteen {
+    width: 15rem;
+    height: 15rem;
+  }
+
  }
